@@ -63,6 +63,18 @@
   --spacing-xl: 80px;
   --spacing-gutter: 24px;
   --spacing-margin: 32px;
+
+  /* Animations */
+  --animate-carousel: carousel 40s linear infinite;
+}
+
+@keyframes carousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @layer base {
