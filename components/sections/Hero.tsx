@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
 
@@ -55,7 +57,17 @@ export function Hero() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-16 lg:mb-6">
-              <button className="group flex items-center gap-3 bg-gradient-to-r from-[#ff7a1a] to-[#ff9b4f] text-white px-8 py-3.5 rounded-full font-sans text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_25px_rgba(255,122,26,0.5)] transition-all">
+              <button 
+                onClick={() => {
+                  const el = document.getElementById('smart-navigation');
+                  if (el) {
+                    const offset = el.getBoundingClientRect().top + window.scrollY - 20;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                    setTimeout(() => document.getElementById('search-input')?.focus(), 600);
+                  }
+                }}
+                className="group flex items-center gap-3 bg-gradient-to-r from-[#ff7a1a] to-[#ff9b4f] text-white px-8 py-3.5 rounded-full font-sans text-sm font-bold tracking-wider uppercase hover:shadow-[0_0_25px_rgba(255,122,26,0.5)] transition-all"
+              >
                 <svg
                   width="18"
                   height="18"
@@ -178,7 +190,16 @@ export function Hero() {
       </div>
 
       {/* Bottom Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group">
+      <div 
+        onClick={() => {
+          const el = document.getElementById('smart-navigation');
+          if (el) {
+            const offset = el.getBoundingClientRect().top + window.scrollY - 20;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
+      >
         <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#ff7a1a]/50 group-hover:bg-[#ff7a1a]/10 transition-all animate-bounce">
           <svg
             width="14"

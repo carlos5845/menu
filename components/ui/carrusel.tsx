@@ -42,7 +42,7 @@ export default function Carrusel() {
   }, [isHovered]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FF7425] py-10 md:py-16 z-20 flex items-center justify-center -rotate-2 scale-[1.03]">
+    <section className="relative w-full overflow-hidden bg-[#FF7425] py-10 md:py-16 z-20 flex items-center justify-center -rotate-2 scale-[1.03] -mt-4">
       {/* Scrolling Container */}
       <div
         ref={scrollRef}

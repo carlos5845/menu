@@ -1,88 +1,12 @@
 import Image from "next/image";
 
-const MENU_DATA = [
-  {
-    id: "ceviches",
-    title: "CEVICHES",
-    subtitle: "FRESCURA MARINA EN CADA BOCADO",
-    bgImage: "/bg_ceviches.png",
-    items: [
-      {
-        id: "c1",
-        name: "CEVICHE MANOLO'S",
-        description:
-          "Pescado, langostinos y pulpo en leche de tigre de la casa.",
-        price: "45.00",
-        tag: "RECOMENDADO",
-        image: "/item_ceviche.png",
-      },
-      {
-        id: "c2",
-        name: "CEVICHE CLÁSICO",
-        description: "Pescado blanco fresco, limón, cilantro y ají.",
-        price: "38.00",
-        image: "/item_ceviche.png",
-      },
-    ],
-  },
-  {
-    id: "tiraditos",
-    title: "TIRADITOS",
-    subtitle: "CORTES FINOS, SABOR INTENSO",
-    bgImage: "/bg_tiraditos.png",
-    items: [
-      {
-        id: "t1",
-        name: "TIRADITO APASIONADO",
-        description:
-          "Láminas de salmón fresco con salsa de maracuyá, hilos de camote frito y ají limo.",
-        price: "42.00",
-        tag: "NUEVO",
-        tagColor: "coral",
-        image: "/item_tiradito.png",
-      },
-      {
-        id: "t2",
-        name: "TIRADITO AL OLIVO",
-        description:
-          "Pulpo laminado finamente cubierto con nuestra exclusiva crema de aceitunas botija.",
-        price: "40.00",
-        image: "/item_tiradito.png",
-      },
-    ],
-  },
-  {
-    id: "mariscos",
-    title: "MARISCOS",
-    subtitle: "DELICIAS DEL PUERTO",
-    bgImage: "/bg_mariscos.png",
-    items: [
-      {
-        id: "m1",
-        name: "JALEA MIXTA",
-        description:
-          "Chicharrón de mariscos y pescado crujiente acompañado de yuca frita y salsa criolla.",
-        price: "55.00",
-        tag: "RECOMENDADO",
-        image: "/item_mariscos.png",
-      },
-      {
-        id: "m2",
-        name: "ARROZ CON MARISCOS",
-        description:
-          "Arroz al wok con azafrán, cerveza negra, mix de mariscos y un toque de queso parmesano.",
-        price: "48.00",
-        image: "/item_mariscos.png",
-      },
-    ],
-  },
-];
+import { MENU_DATA } from "@/lib/data";
 
 export function MenuShowcase() {
   return (
     <section className="w-full bg-[#050505] flex flex-col pb-24">
       {MENU_DATA.map((category) => (
-        <div key={category.id} className="w-full flex flex-col mb-16">
+        <div key={category.id} id={category.id} className="w-full flex flex-col mb-16 scroll-mt-[140px]">
           {/* Category Banner */}
           <div className="relative w-full h-[350px] md:h-[450px]">
             <Image
@@ -97,7 +21,7 @@ export function MenuShowcase() {
             {/* Title & Subtitle positioned at the bottom left of the banner */}
             <div className="absolute bottom-6 left-0 w-full">
               <div className="max-w-5xl mx-auto px-4 sm:px-8">
-                <h2 className="text-display-xl text-[#f5f5f5] mb-1 uppercase tracking-tight drop-shadow-md">
+                <h2 className="text-[#f5f5f5] mb-1 uppercase tracking-tight drop-shadow-md" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.04em', fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
                   {category.title}
                 </h2>
                 <p className="text-[#ff7a1a] text-sm tracking-[0.1em] font-semibold uppercase font-sans drop-shadow-sm">
@@ -112,7 +36,8 @@ export function MenuShowcase() {
             {category.items.map((item) => (
               <article
                 key={item.id}
-                className="group flex gap-6 items-center w-full"
+                id={item.id}
+                className="group flex gap-6 items-center w-full scroll-mt-[140px]"
               >
                 {/* Thumbnail Image */}
                 <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex-shrink-0 border border-white/5 bg-[#111111]">
