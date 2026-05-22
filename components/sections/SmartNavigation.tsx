@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { MENU_DATA, MenuItem, MenuCategory } from "@/lib/data";
 import { Search, X, ChevronLeft, ChevronRight } from "lucide-react";
-
+import {Folder, Utensils} from 'lucide-react'
 // Type for search results
 type SearchResult = 
   | { type: "category"; data: MenuCategory }
@@ -128,8 +128,8 @@ export function SmartNavigation() {
                   {/* Categories Group */}
                   {categoriesResults.length > 0 && (
                     <div className="mb-2">
-                      <div className="px-4 py-2 text-xs font-bold text-[#ff7a1a] uppercase tracking-wider bg-white/5">
-                        📂 Categorías
+                      <div className="px-4 py-2 text-xs font-bold text-[#ff7a1a] uppercase tracking-wider bg-white/5 flex gap-3 items-center">
+                        <Folder /> Categorías
                       </div>
                       {categoriesResults.map((result, idx) => {
                         if (result.type !== "category") return null;
@@ -151,8 +151,8 @@ export function SmartNavigation() {
                   {/* Items Group */}
                   {itemsResults.length > 0 && (
                     <div>
-                      <div className="px-4 py-2 text-xs font-bold text-[#ff7a1a] uppercase tracking-wider bg-white/5">
-                        🍽 Platos
+                      <div className="px-4 py-2 text-xs font-bold text-[#ff7a1a] uppercase tracking-wider bg-white/5 flex gap-3 items-center">
+                        <Utensils/> Platos
                       </div>
                       {itemsResults.map((result, idx) => {
                         if (result.type !== "item") return null;

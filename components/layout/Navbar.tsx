@@ -7,7 +7,7 @@ export function Navbar() {
       <div className="mx-auto flex h-20 items-center justify-between px-4 sm:px-8 max-w-7xl">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/LOGO-CEVICHE.png"
+            src="/LOGO-CEVICHE.webp"
             alt="Coastal Zest Logo"
             width={120}
             height={40}

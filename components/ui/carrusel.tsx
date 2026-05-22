@@ -1,15 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const CAROUSEL_IMAGES = [
-  "/bg_ceviches.png",
-  "/item_mariscos.png",
-  "/bg_tiraditos.png",
-  "/item_ceviche.png",
-  "/bg_mariscos.png",
-  "/item_tiradito.png",
-  "/barco.png",
+  "/fotos-carrusel/foto_1.jpg",
+  "/fotos-carrusel/foto_2.jpg",
+    "/fotos-carrusel/foto_3.jpg",
+    "/fotos-carrusel/foto_4.jpg",
+    "/fotos-carrusel/foto_5.jpg",
+    "/fotos-carrusel/foto_6.jpg",
+    "/fotos-carrusel/foto_7.jpg",
+    "/fotos-carrusel/foto_8.jpg",
+    "/fotos-carrusel/foto_9.jpg",
+    "/fotos-carrusel/foto_10.jpg",
 ];
 
 export default function Carrusel() {
@@ -42,7 +46,7 @@ export default function Carrusel() {
   }, [isHovered]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FF7425] py-10 md:py-16 z-20 flex items-center justify-center -rotate-2 scale-[1.03] -mt-4">
+    <section className="relative w-full overflow-hidden  py-10 md:py-16 z-20 flex items-center justify-center -rotate-2 scale-[1.03] -mt-4">
       {/* Scrolling Container */}
       <div
         ref={scrollRef}
@@ -64,11 +68,12 @@ export default function Carrusel() {
                   key={`set${set}-${idx}`}
                   className="relative h-[220px] md:h-[360px] w-[220px] md:w-[290px] shrink-0 rounded-2xl overflow-hidden shadow-md group"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={src}
                     alt={`Imagen ${idx}`}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 220px, 290px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               ))}

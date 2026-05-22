@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
+import {MapPin} from "lucide-react";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"] });
 
@@ -11,9 +12,12 @@ export function Hero() {
       {/* Background cinematic elements */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/fondo-hero.png"
+          src="/fondo-hero.webp"
           alt="Background"
           fill
+          priority
+          quality={80}
+          sizes="100vw"
           className="object-cover opacity-60 md:opacity-100"
         />
         {/* Gradients to darken left side and top/bottom for text readability */}
@@ -42,7 +46,7 @@ export function Hero() {
           <div className="w-full flex flex-col items-center lg:items-start text-center lg:text-left pt-12 lg:pt-0">
             <div className="relative w-full lg:w-[90%] aspect-[2/1] mb-6">
               <Image
-                src="/right-brand-removebg-preview.png"
+                src="/right-brand-removebg-preview.webp"
                 alt="Bienvenido a Manolo's Quinta Cevichería"
                 fill
                 className="object-contain object-center lg:object-left"
@@ -85,7 +89,12 @@ export function Hero() {
                 </svg>
                 VER MENÚ
               </button>
-              <button className="group flex items-center gap-3 bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-full font-sans text-sm font-bold tracking-wider uppercase hover:bg-white/5 hover:border-white/40 transition-all">
+              <a 
+                href="https://wa.me/51920611777"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 bg-transparent border border-white/20 text-[#25D366] px-8 py-3.5 rounded-full font-sans text-sm font-bold tracking-wider uppercase hover:bg-[#25D366]/10 hover:border-[#25D366]/50 transition-all"
+              >
                 <svg
                   width="18"
                   height="18"
@@ -97,72 +106,57 @@ export function Hero() {
                   strokeLinejoin="round"
                   className="group-hover:scale-110 transition-transform"
                 >
-                  <polygon points="5 3 19 12 5 21 5 3" />
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                CONÓCENOS
-              </button>
+                RESERVAR
+              </a>
             </div>
 
-            {/* Feature Cards Glassmorphism */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-[90%]">
-              {/* Card 1 */}
-              <div className="bg-[#121212]/70 backdrop-blur-md rounded-2xl p-5 border border-white/10 flex items-center gap-4 w-full flex-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:border-[#ff7a1a]/40 transition-colors">
-                <div className="w-11 h-11 rounded-full bg-[#ff7a1a]/10 border border-[#ff7a1a]/30 flex items-center justify-center shrink-0">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#ff7a1a"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M6 12s-3-2-4-2c0 4 4 4 4 4" />
-                    <path d="M22 12c-2.73-.01-5.46-1-7-3-3-4-8-4-10-4S1 10 1 12s1.5 7 4 7 7 0 10-4c1.54-2 4.27-2.99 7-3z" />
-                    <circle cx="16" cy="10" r="1" />
-                  </svg>
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-white font-bold text-sm mb-0.5">
-                    Frescura diaria
-                  </span>
-                  <span className="text-white/50 text-[11px] font-light leading-tight">
-                    Seleccionamos lo mejor
-                    <br />
-                    del mar cada día.
-                  </span>
-                </div>
-              </div>
+            {/* Social Media & Location Banner */}
+            <div className="flex flex-col gap-6 w-full lg:w-[90%] mt-8 bg-[#121212]/50 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:border-white/20 transition-all">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-4">
+                
+                {/* Location */}
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Cevichería Manolo's Jr.+Banchero+Rossi+149,+Puno+21002"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 group cursor-pointer"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#ff7a1a]/10 border border-[#ff7a1a]/30 flex items-center justify-center shrink-0 group-hover:bg-[#ff7a1a]/20 group-hover:border-[#ff7a1a]/50 transition-all">
+                    <MapPin size={22} className="text-[#ff7a1a] group-hover:scale-110 transition-transform" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-white/50 font-light uppercase tracking-[0.15em] mb-1 group-hover:text-white/70 transition-colors">Ubícanos en</p>
+                    <p className="text-white font-medium text-sm md:text-base leading-tight group-hover:text-[#ff7a1a] transition-colors">Jr. Banchero Rossi 149<br/></p>
+                  </div>
+                </a>
 
-              {/* Card 2 */}
-              <div className="bg-[#121212]/70 backdrop-blur-md rounded-2xl p-5 border border-white/10 flex items-center gap-4 w-full flex-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:border-[#ff7a1a]/40 transition-colors">
-                <div className="w-11 h-11 rounded-full bg-[#ff7a1a]/10 border border-[#ff7a1a]/30 flex items-center justify-center shrink-0">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#ff7a1a"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
-                    <path d="M7 2v20" />
-                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
-                  </svg>
+                {/* Divider */}
+                <div className="hidden sm:block h-12 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
+                <div className="sm:hidden w-full h-[1px] bg-gradient-to-r from-white/10 via-white/10 to-transparent"></div>
+
+                {/* Socials */}
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
+                    {/* Facebook */}
+                    <a href="https://www.facebook.com/profile.php?id=100092236969799" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#1877F2]]/20 hover:border-[#1877F2]/50 hover:shadow-[0_0_15px_rgba(23,48,50,0.3)] transition-all group">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-[#1877F2] transition-colors">
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+</svg>
+                    </a>
+                    {/* Instagram */}
+                    <a href="https://www.instagram.com/quinta_cevicheria?utm_source=qr&igsh=M3NrNTB3ejBpcG9w" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#E1306C]/20 hover:border-[#E1306C]/50 hover:shadow-[0_0_15px_rgba(225,48,108,0.3)] transition-all group">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-[#E1306C] transition-colors"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    
+                    {/* TikTok */}
+                    <a href="https://www.tiktok.com/@manoloscevichera?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/20 hover:border-white/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all group">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white transition-colors"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-white font-bold text-sm mb-0.5">
-                    Sabor auténtico
-                  </span>
-                  <span className="text-white/50 text-[11px] font-light leading-tight">
-                    Recetas tradicionales con
-                    <br />
-                    un toque único.
-                  </span>
-                </div>
+
               </div>
             </div>
           </div>
@@ -178,7 +172,7 @@ export function Hero() {
             {/* Mascot Logo */}
             <div className="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 lg:w-[400px] aspect-square pointer-events-auto hover:scale-[1.05] transition-transform duration-700 ease-out">
               <Image
-                src="/LOGO-CEVICHE.png"
+                src="/LOGO-CEVICHE.webp"
                 alt="Manolo's Mascot Logo"
                 fill
                 className="object-contain object-top drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
