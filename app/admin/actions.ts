@@ -12,18 +12,37 @@ export async function loginAction(formData: FormData) {
     return { error: 'Por favor ingresa correo y contraseña.' }
   }
 
-  const supabase = await createClient()
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
-
-  if (error) {
-    return { error: 'Credenciales inválidas o acceso no autorizado.' }
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return { 
+      error: 'Variables de entorno no configuradas en Vercel (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY).' 
+    }
   }
 
-  redirect('/admin')
+  let success = false
+
+  try {
+    const supabase = await createClient()
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      return { error: `Credenciales inválidas o error de autenticación: ${error.message}` }
+    }
+
+    success = true
+  } catch (err: any) {
+    return { error: `Error en el servidor: ${err?.message || 'Error inesperado'}` }
+  }
+
+  if (success) {
+    redirect('/admin')
+  }
 }
 
 export async function logoutAction() {
