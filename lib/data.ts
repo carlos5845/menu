@@ -6,6 +6,9 @@ export interface MenuItem {
   tag?: string;
   tagColor?: "coral" | "green";
   image: string;
+  isAvailable?: boolean;
+  ingredients?: string;
+  categoryName?: string;
 }
 
 export interface MenuCategory {
@@ -902,7 +905,7 @@ export const MENU_DATA: MenuCategory[] = [
     id: "bebidas",
     title: "BEBIDAS", // [cite: 136]
     subtitle: "REFRESCOS, GASEOSAS E INFUSIONES",
-    bgImage: "/bg_mariscos.webp",
+    bgImage: "/bebidas.png",
     items: [
       { id: "beb1", name: "LIMONADA 1 LT", description: "Refresco", price: "S/12.00", image: "/item_mariscos.webp" }, // [cite: 137]
       { id: "beb2", name: "LIMONADA ½ LT", description: "Refresco", price: "S/7.00", image: "/item_mariscos.webp" }, // [cite: 138]

@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`${anybody.variable} ${plusJakartaSans.variable} h-full antialiased overflow-x-clip`}
     >
       <body className="min-h-full flex flex-col bg-[#050505] text-[#f5f5f5] overflow-x-clip relative w-full">
-        <main className="flex-grow">
+        <main className="w-full flex-grow">
           {children}
         </main>
       </body>

@@ -9,7 +9,8 @@ type SearchResult =
   | { type: "category"; data: MenuCategory }
   | { type: "item"; data: MenuItem; categoryId: string };
 
-export function SmartNavigation() {
+export function SmartNavigation({ menuData }: { menuData?: MenuCategory[] }) {
+  const currentMenu = menuData && menuData.length > 0 ? menuData : MENU_DATA;
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -27,7 +28,7 @@ export function SmartNavigation() {
     const query = searchQuery.toLowerCase();
     const newResults: SearchResult[] = [];
 
-    MENU_DATA.forEach((category) => {
+    currentMenu.forEach((category) => {
       // Check if category matches
       if (category.title.toLowerCase().includes(query)) {
         newResults.push({ type: "category", data: category });
@@ -46,7 +47,7 @@ export function SmartNavigation() {
     });
 
     setResults(newResults);
-  }, [searchQuery]);
+  }, [searchQuery, currentMenu]);
 
   // Smooth scroll function
   const scrollToId = (id: string) => {
@@ -86,22 +87,24 @@ export function SmartNavigation() {
 
   return (
     <div id="smart-navigation" className="sticky top-0 z-[60] w-full bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 py-4">
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 flex flex-col gap-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col gap-4">
         
         {/* Search Bar Container */}
         <div className="relative w-full z-[70]">
-          <div className="relative flex items-center">
-            <Search className="absolute left-4 w-5 h-5 text-[#f5f5f5]/50" />
+          <div className="relative flex items-center w-full">
+            <div className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/5 flex items-center justify-center pointer-events-none">
+              <Search className="w-4 h-4 text-[#f5f5f5]/60" />
+            </div>
             
             <input
               id="search-input"
               type="text"
-              placeholder="Busca un plato o categoría..."
+              placeholder="Busca un plato, marisco o categoría..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)} // delay to allow clicking results
-              className="w-full bg-[#111111]/80 text-[#f5f5f5] placeholder-[#f5f5f5]/40 pl-12 pr-10 py-3 rounded-full border border-white/10 focus:outline-none focus:border-[#ff7a1a]/50 focus:bg-[#111111] transition-all"
+              className="w-full bg-[#111111]/90 text-[#f5f5f5] placeholder-[#f5f5f5]/40 pl-14 pr-12 py-3.5 sm:py-4 text-sm sm:text-base rounded-full border border-white/10 focus:outline-none focus:border-[#ff7a1a]/60 focus:bg-[#141414] transition-all shadow-lg"
             />
 
             {/* Clear Button */}
@@ -200,11 +203,11 @@ export function SmartNavigation() {
             className="flex gap-3 overflow-x-auto scrollbar-hide py-1 w-full relative z-[60]"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {MENU_DATA.map((category) => (
+            {currentMenu.map((category) => (
               <button
                 key={`pill-${category.id}`}
                 onClick={() => scrollToId(category.id)}
-                className="whitespace-nowrap px-5 py-2 rounded-full border border-white/10 bg-[#111111]/50 text-[#f5f5f5] text-sm font-semibold hover:border-[#ff7a1a]/50 hover:text-[#ff7a1a] hover:bg-[#111111] transition-all"
+                className="whitespace-nowrap px-5 py-2 rounded-full border border-white/10 bg-[#111111]/50 text-[#f5f5f5] text-sm font-semibold hover:border-[#ff7a1a]/50 hover:text-[#ff7a1a] hover:bg-[#111111] transition-all cursor-pointer"
               >
                 {category.title}
               </button>
